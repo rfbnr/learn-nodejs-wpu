@@ -1,0 +1,37 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Detail Contact</h2>
+
+            <% if (!contact) { %>
+                <div class="alert alert-danger" role="alert">
+                    <p><b>Data Contact tidak ditemukan!</b></p>
+                </div>
+                <a href="/contact" class="btn btn-danger">&laquo; Go Back</a>
+            <% } else { %>
+
+            <div class="card" style="width: 25rem;">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Nama : </b><%= contact.nama %></h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>No HP : </b><%= contact.nohp %></li>
+                    <li class="list-group-item"><b>Email : </b><%= contact.email %></li>
+                    <li class="list-group-item">
+                        <a href="/contact/edit/<%= contact.nama %>" class="btn btn-info badge">Ubah</a>
+                        <!-- <a href="/contact/delete/<%= contact.nama %>" class="btn btn-danger badge" onclick="return confirm('Yakin ingin dihapus')">Hapus</a> -->
+                        <form method="POST" action="/contact?_method=delete" class="d-inline">
+                            <input type="hidden" name="nama" value="<%= contact.nama %>">
+                            <button type="submit" class="btn btn-danger badge" onclick="return confirm('Yakin ingin dihapus')">Hapus</button>
+                        </form>
+                    </li>
+                </ul>
+                <div class="card-body">
+                    <a href="/contact" class="btn btn-primary">&laquo; Go Back</a>
+                </div>
+            </div>
+            <% } %>
+            
+        </div>
+    </div>
+</div>
